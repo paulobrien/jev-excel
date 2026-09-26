@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jev for Excel</title>
+  <link rel="stylesheet" href="taskpane.css" />
+  <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+  <script src="jev-core.js"></script>
+  <script src="functions.js"></script>
+  <script src="taskpane.js" defer></script>
+</head>
+<body>
+  <header>
+    <img src="assets/icon-32.png" alt="" width="24" height="24" />
+    <h1>Jev for Excel</h1>
+  </header>
+
+  <main>
+    <section>
+      <h2>Connection</h2>
+      <label for="apiKey">API key</label>
+      <div class="row">
+        <input id="apiKey" type="password" autocomplete="off" spellcheck="false" placeholder="Paste your TypeSafe API key" />
+        <button id="toggleKey" type="button" class="ghost" aria-label="Show key">Show</button>
+      </div>
+      <p class="hint">Your own TypeSafe key. It's stored only in this add-in's browser storage on this device. The server passes it on to TypeSafe without keeping it.</p>
+
+      <label for="model">Model</label>
+      <input id="model" type="text" spellcheck="false" placeholder="jev-latest" />
+      <p class="hint">Pin a version (e.g. <code>jev-1.13.0</code>) to keep thresholds stable.</p>
+
+      <details>
+        <summary>Advanced</summary>
+        <label for="baseUrl">Base URL</label>
+        <input id="baseUrl" type="url" spellcheck="false" />
+        <p class="hint">Leave blank to use the server this add-in was loaded from, which forwards calls to TypeSafe.</p>
+        <label class="check"><input id="cache" type="checkbox" checked /> Cache answers (avoids paying twice on recalculation)</label>
+      </details>
+
+      <div class="buttons">
+        <button id="save" type="button" class="primary">Save</button>
+        <button id="test" type="button">Test connection</button>
+      </div>
+      <p id="status" class="status" role="status" aria-live="polite"></p>
+    </section>
+
+    <section>
+      <h2>Workbook</h2>
+      <div class="buttons">
+        <button id="recalc" type="button">Recalculate all</button>
+        <button id="clearCache" type="button">Clear cache</button>
+      </div>
+      <dl id="stats" class="stats"></dl>
+    </section>
+
+    <section>
+      <h2>Quick reference</h2>
+      <pre>=JEV.ASK("choice", A2, "billing", "technical", "other")
+=JEV.ASK("score", A2, "Calm", "Frustrated", "Angry")
+=JEV.ASK("noul", A2, "Asks for a refund")
+
+=JEV.CHOICE(A2, "?Which team?", $F$2:$F$6)
+=JEV.SCORE(A2, $H$2:$H$4)
+=JEV.NOUL(A2, "Mentions a deadline")</pre>
+      <p class="hint">Outputs: <code>choice:confidence</code>, <code>choice:probs</code>, <code>score:level</code>, <code>score:label</code>, <code>noul:bool</code>, <code>noul:bool:0.8</code>, <code>…:json</code></p>
+      <p class="hint">Full docs in the project README.</p>
+    </section>
+  </main>
+
+  <footer>
+    <span id="version"></span> · Unofficial add-in, not affiliated with TypeSafe AI.
+  </footer>
+</body>
+</html>

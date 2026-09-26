@@ -1,0 +1,7 @@
+' Paste this into the ThisWorkbook module of Jev.xlam (VBA editor > ThisWorkbook).
+' It registers descriptions for =JEV, =JEV_STATE and =JEV_MODELS in the
+' Insert Function dialog every time the add-in loads.
+
+Private Sub Workbook_Open()
+    modJev.JevRegisterFunctions
+End Sub

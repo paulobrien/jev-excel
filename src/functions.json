@@ -1,0 +1,135 @@
+{
+  "functions": [
+    {
+      "id": "ASK",
+      "name": "ASK",
+      "description": "Ask Jev a typed question about some text. Mode is \"choice\", \"score\" or \"noul\", optionally with an output such as \"choice:probs\" or \"noul:bool\".",
+      "result": { "dimensionality": "matrix" },
+      "parameters": [
+        {
+          "name": "mode",
+          "description": "choice | score | noul, optionally followed by :output (e.g. choice:confidence, score:label, noul:bool:0.7).",
+          "type": "string",
+          "dimensionality": "scalar"
+        },
+        {
+          "name": "text",
+          "description": "The text (or cell/range) Jev should evaluate. Blank returns blank.",
+          "type": "any",
+          "dimensionality": "matrix"
+        },
+        {
+          "name": "options",
+          "description": "Options, rubric levels or the yes/no question. Prefix an item with ? to make it the question. Accepts text or ranges.",
+          "type": "any",
+          "dimensionality": "matrix",
+          "optional": true,
+          "repeating": true
+        }
+      ]
+    },
+    {
+      "id": "CHOICE",
+      "name": "CHOICE",
+      "description": "Jev picks one of the options for the text and returns its label.",
+      "result": { "dimensionality": "matrix" },
+      "parameters": [
+        {
+          "name": "text",
+          "description": "The text (or cell/range) Jev should classify.",
+          "type": "any",
+          "dimensionality": "matrix"
+        },
+        {
+          "name": "options",
+          "description": "Two or more labels. Use \"label | description\" or a 2-column range for descriptions, and \"?question\" to set the question.",
+          "type": "any",
+          "dimensionality": "matrix",
+          "repeating": true
+        }
+      ]
+    },
+    {
+      "id": "SCORE",
+      "name": "SCORE",
+      "description": "Jev places the text on an ordered rubric and returns the expected level (can fall between levels).",
+      "result": { "dimensionality": "matrix" },
+      "parameters": [
+        {
+          "name": "text",
+          "description": "The text (or cell/range) Jev should score.",
+          "type": "any",
+          "dimensionality": "matrix"
+        },
+        {
+          "name": "levels",
+          "description": "Two to ten rubric level descriptions, lowest (level 0) first. Use \"?question\" to set the question.",
+          "type": "any",
+          "dimensionality": "matrix",
+          "repeating": true
+        }
+      ]
+    },
+    {
+      "id": "NOUL",
+      "name": "NOUL",
+      "description": "Jev answers a yes/no question about the text and returns the probability of yes (0 to 1).",
+      "result": { "dimensionality": "matrix" },
+      "parameters": [
+        {
+          "name": "text",
+          "description": "The text (or cell/range) Jev should evaluate.",
+          "type": "any",
+          "dimensionality": "matrix"
+        },
+        {
+          "name": "question",
+          "description": "The yes/no question or statement, e.g. \"The customer is asking for a refund\".",
+          "type": "any",
+          "dimensionality": "matrix"
+        },
+        {
+          "name": "when_true",
+          "description": "Optional description of what counts as yes.",
+          "type": "any",
+          "dimensionality": "matrix",
+          "optional": true
+        },
+        {
+          "name": "when_false",
+          "description": "Optional description of what counts as no.",
+          "type": "any",
+          "dimensionality": "matrix",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "id": "STATE",
+      "name": "STATE",
+      "description": "Builds a JSON object from a header range and a value range, so Jev sees named fields you can reference in questions with `backticks`.",
+      "result": { "type": "string" },
+      "parameters": [
+        {
+          "name": "headers",
+          "description": "Field names, e.g. $A$1:$C$1.",
+          "type": "any",
+          "dimensionality": "matrix"
+        },
+        {
+          "name": "values",
+          "description": "Field values, e.g. A2:C2.",
+          "type": "any",
+          "dimensionality": "matrix"
+        }
+      ]
+    },
+    {
+      "id": "MODELS",
+      "name": "MODELS",
+      "description": "Lists the Jev models available to your API key (spills name, description, release date).",
+      "result": { "dimensionality": "matrix" },
+      "parameters": []
+    }
+  ]
+}

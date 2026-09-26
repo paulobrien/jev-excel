@@ -1,0 +1,26 @@
+{
+  "name": "jev-excel",
+  "version": "1.0.0",
+  "description": "Excel add-in that lets you call TypeSafe AI's Jev model from formulas: =JEV.ASK(\"choice\", A2, \"option1\", \"option2\").",
+  "private": true,
+  "license": "MIT",
+  "author": "Paul O'Brien",
+  "keywords": ["excel", "office-addin", "custom-functions", "jev", "typesafe", "classification", "ai"],
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "test": "node --test \"test/*.test.js\"",
+    "certs": "office-addin-dev-certs install",
+    "serve": "node scripts/serve.js",
+    "start": "office-addin-debugging start manifest.xml desktop --dev-server \"npm run serve\" --dev-server-port 3000",
+    "start:web": "office-addin-debugging start manifest.xml web --dev-server \"npm run serve\" --dev-server-port 3000",
+    "stop": "office-addin-debugging stop manifest.xml",
+    "validate": "office-addin-manifest validate manifest.xml",
+    "build": "node scripts/build.js",
+    "deploy": "npm run build && npx wrangler@4 deploy"
+  },
+  "devDependencies": {
+    "office-addin-debugging": "^7.0.1",
+    "office-addin-dev-certs": "^3.0.1",
+    "office-addin-manifest": "^3.0.1"
+  }
+}

@@ -1,0 +1,6 @@
+* text=auto eol=lf
+*.bas text eol=crlf
+*.cls text eol=crlf
+*.txt text eol=crlf
+*.png binary
+*.xlam binary
