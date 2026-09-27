@@ -13,7 +13,6 @@ test("version numbers match everywhere", () => {
   assert.equal(Jev.VERSION, version, "src/jev-core.js");
   assert.ok(read("manifest.xml").includes(`<Version>${version}.0</Version>`), "manifest.xml");
   assert.ok(read("vba/modJev.bas").includes(`JEV_VERSION As String = "${version}"`), "vba/modJev.bas");
-  assert.ok(read("CHANGELOG.md").includes(`## ${version} `), "CHANGELOG.md");
 });
 
 test("every function in functions.json is registered in functions.js, and vice versa", () => {

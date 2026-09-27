@@ -654,7 +654,7 @@ jev-excel/
 ├── test/
 │   ├── jev-core.test.js         Core logic against a mock Jev API
 │   ├── proxies.test.js          Dev server and Worker: static files, proxying, manifest rewriting
-│   └── project.test.js          Versions match everywhere; functions.json matches functions.js
+│   └── project.test.js          Version numbers agree; functions.json matches functions.js
 └── .github/workflows/ci.yml     Runs the tests on Node 20 and 22
 ```
 
@@ -665,7 +665,7 @@ npm run deploy      # build dist/ and deploy the Worker to Cloudflare
 npm run validate    # Microsoft's manifest validator (needs internet)
 ```
 
-The add-in uses a **shared runtime**: `taskpane.html` loads `jev-core.js`, `functions.js` and `taskpane.js` into a single JavaScript context. That's why the settings pane and the formulas share one client, one cache and one set of statistics. `functions.json` is written by hand, so if you add a function, register it in both `functions.js` (`CustomFunctions.associate`) and `functions.json`. `npm test` fails if they disagree. The same goes for the version number, which lives in `package.json`, `jev-core.js`, `manifest.xml`, `modJev.bas` and `CHANGELOG.md`.
+The add-in uses a **shared runtime**: `taskpane.html` loads `jev-core.js`, `functions.js` and `taskpane.js` into a single JavaScript context. That's why the settings pane and the formulas share one client, one cache and one set of statistics. `functions.json` is written by hand, so if you add a function, register it in both `functions.js` (`CustomFunctions.associate`) and `functions.json`. `npm test` fails if they disagree. The same goes for the version number, which lives in `package.json`, `jev-core.js`, `manifest.xml` and `modJev.bas`.
 
 **API reference used:** `POST /v1/systemone` with `{ model, state, questions }`. The question types are `noul` (optional `criteria.true`/`criteria.false`), `choice` (`criteria` maps each label to a description or `null`) and `score` (`criteria` is an array of 2–10 levels). Answers come back keyed by question id. `GET /v1/models` returns `{ models: [{ name, description, release_date }] }`. See the [TypeSafe API reference](https://docs.typesafe.ai/api) and the official [`@typesafe-ai/sdk`](https://www.npmjs.com/package/@typesafe-ai/sdk).
 

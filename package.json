@@ -8,7 +8,7 @@
   "keywords": ["excel", "office-addin", "custom-functions", "jev", "typesafe", "classification", "ai"],
   "engines": { "node": ">=20" },
   "scripts": {
-    "test": "node --test \"test/*.test.js\"",
+    "test": "node --test",
     "certs": "office-addin-dev-certs install",
     "serve": "node scripts/serve.js",
     "start": "office-addin-debugging start manifest.xml desktop --dev-server \"npm run serve\" --dev-server-port 3000",
