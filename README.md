@@ -644,13 +644,14 @@ jev-excel/
 │   ├── functions.js             Custom function bindings (JEV.ASK, CHOICE, SCORE, NOUL, STATE, MODELS)
 │   ├── functions.json           Custom function metadata (names, parameters, help text)
 │   ├── taskpane.html/.css/.js   Settings pane; shares a runtime with the functions
-│   └── assets/                  Icons
+│   └── assets/                  icon.svg, and the icon PNGs rendered from it by `npm run icons`
 ├── vba/
 │   ├── modJev.bas               VBA edition (=JEV, =JEV_STATE, =JEV_MODELS and macros)
 │   └── ThisWorkbook.cls.txt     Optional Workbook_Open hook for function help text
 ├── scripts/
 │   ├── serve.js                 HTTPS dev server on :3000, with the same /v1/* proxy as the Worker
-│   └── build.js                 Builds dist/ for the Worker
+│   ├── build.js                 Builds dist/ for the Worker
+│   └── icons.js                 Renders src/assets/icon.svg to every PNG size
 ├── test/
 │   ├── jev-core.test.js         Core logic against a mock Jev API
 │   ├── proxies.test.js          Dev server and Worker: static files, proxying, manifest rewriting
@@ -662,6 +663,7 @@ jev-excel/
 npm test            # all tests (Node 20+). No dependencies, network or API key needed.
 npm run serve       # HTTPS dev server on :3000
 npm run deploy      # build dist/ and deploy the Worker to Cloudflare
+npm run icons       # re-render the icon PNGs after editing src/assets/icon.svg
 npm run validate    # Microsoft's manifest validator (needs internet)
 ```
 
@@ -673,4 +675,4 @@ The add-in uses a **shared runtime**: `taskpane.html` loads `jev-core.js`, `func
 
 ## Licence
 
-[MIT](LICENSE) © 2026 Paul O'Brien. "Jev" and "TypeSafe" are names of TypeSafe AI and are used here only to describe compatibility.
+[MIT](LICENSE) © 2026 Paul O'Brien. See also the [privacy policy](docs/PRIVACY.md), the [end-user licence agreement](docs/EULA.md) and [support](docs/SUPPORT.md). "Jev" and "TypeSafe" are names of TypeSafe AI and are used here only to describe compatibility.

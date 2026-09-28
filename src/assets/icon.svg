@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <!-- Source for every icon-*.png: run `npm run icons` after editing. -->
+  <rect width="128" height="128" rx="28" fill="#1f6f5c"/>
+  <path fill="#fff" d="M55 27.25H69.5V85.3A26.25 15.95 0 0 1 43.25 101.25V89.55A11.75 4.25 0 0 0 55 85.3Z"/>
+  <circle cx="92" cy="35.5" r="9.5" fill="#9ee6c8"/>
+</svg>
