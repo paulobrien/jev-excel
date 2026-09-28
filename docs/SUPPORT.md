@@ -14,7 +14,7 @@ To see the full message behind an error, hover over the cell, or select it and c
 
 ## Report a problem or ask a question
 
-[Open an issue](../../../issues/new) on GitHub. Please include:
+[Open an issue](https://github.com/paulobrien/jev-excel/issues/new) on GitHub. Please include:
 
 - the Excel version and platform (Windows, Mac or the web), and whether you use the add-in or the VBA edition;
 - the formula, with any sensitive text replaced by an example that still shows the problem;
@@ -24,7 +24,7 @@ To see the full message behind an error, hover over the cell, or select it and c
 
 ## Security issues
 
-Please don't report security vulnerabilities in public issues. Use GitHub's [private vulnerability reporting](../../../security/advisories/new) for this repository instead.
+Please don't report security vulnerabilities in public issues. Use GitHub's [private vulnerability reporting](https://github.com/paulobrien/jev-excel/security/advisories/new) for this repository instead.
 
 ## Questions about your TypeSafe account
 

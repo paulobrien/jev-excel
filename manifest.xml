@@ -17,7 +17,7 @@
   <Description DefaultValue="Call TypeSafe AI's Jev model from Excel formulas: =JEV.ASK(&quot;choice&quot;, A2, &quot;option1&quot;, &quot;option2&quot;) for choice, score and yes/no (noul) questions."/>
   <IconUrl DefaultValue="https://localhost:3000/assets/icon-32.png"/>
   <HighResolutionIconUrl DefaultValue="https://localhost:3000/assets/icon-64.png"/>
-  <SupportUrl DefaultValue="https://localhost:3000/taskpane.html"/>
+  <SupportUrl DefaultValue="https://github.com/paulobrien/jev-excel/blob/main/docs/SUPPORT.md"/>
   <Hosts>
     <Host Name="Workbook"/>
   </Hosts>
@@ -98,7 +98,7 @@
         <bt:Url id="Functions.Script.Url" DefaultValue="https://localhost:3000/functions.js"/>
         <bt:Url id="Functions.Metadata.Url" DefaultValue="https://localhost:3000/functions.json"/>
         <bt:Url id="Taskpane.Url" DefaultValue="https://localhost:3000/taskpane.html"/>
-        <bt:Url id="GetStarted.LearnMoreUrl" DefaultValue="https://localhost:3000/taskpane.html"/>
+        <bt:Url id="GetStarted.LearnMoreUrl" DefaultValue="https://github.com/paulobrien/jev-excel#readme"/>
       </bt:Urls>
       <bt:ShortStrings>
         <bt:String id="Functions.Namespace" DefaultValue="JEV"/>

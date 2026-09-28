@@ -2,11 +2,30 @@
 
 **Jev for Excel** · Effective 28 September 2026
 
-Jev for Excel is an unofficial, open-source Excel add-in by Paul O'Brien ("I", "me"). It lets you call TypeSafe AI's Jev model from worksheet formulas. It isn't affiliated with or endorsed by TypeSafe AI or Microsoft.
+This policy describes how the **Jev for Excel** service handles your information. Jev for Excel is an unofficial Excel add-in by Paul O'Brien ("I", "me") that lets you call TypeSafe AI's Jev model from worksheet formulas. It isn't affiliated with or endorsed by TypeSafe AI or Microsoft.
 
-This policy covers the add-in, the Cloudflare Worker that hosts it, and the VBA edition in this repository. In short: **I don't collect, store, sell or share your data.** The add-in sends your data only to TypeSafe, which you choose to use, and only to answer your formulas.
+The policy applies to the whole Jev for Excel service:
 
-## What the add-in handles, and where it goes
+- the Jev for Excel add-in for Excel on Windows, Mac and the web;
+- the server that hosts the add-in and forwards its requests to TypeSafe (a Cloudflare Worker);
+- the Jev for Excel VBA edition.
+
+In short: **Jev for Excel doesn't collect, store, sell or share your personal information.** It sends your data only to TypeSafe, which you choose to use, and only to answer your formulas.
+
+## Personal information
+
+- **What personal information Jev for Excel handles:**
+  - your TypeSafe API key;
+  - any personal information contained in the text you choose to evaluate;
+  - technical data, such as your IP address, that reaches the hosting server as part of any internet request.
+
+  It doesn't ask for your name, email address or any other account details.
+- **How it's used:** only to answer your formulas. Your text and key go to TypeSafe for that purpose and nothing else. Nothing is used for analytics, advertising, profiling or training.
+- **Retention:** Jev for Excel keeps none of it on its servers. Your key and settings stay on your own device until you delete them. Answers are held in memory only until Excel closes.
+- **Sharing:** your information isn't sold, rented or shared with anyone. It goes only to the service providers named under [Third parties](#third-parties), and only as needed to run the service.
+- **Your rights:** Jev for Excel holds no personal information about you, so there's nothing to access, correct or erase on its side. [Your control](#your-control) explains how to delete what's on your device. To exercise your rights over data held by TypeSafe, Cloudflare or Microsoft, contact them directly.
+
+## What Jev for Excel handles, and where it goes
 
 | Data | What happens to it |
 |---|---|
@@ -18,7 +37,7 @@ This policy covers the add-in, the Cloudflare Worker that hosts it, and the VBA 
 ## What isn't collected
 
 - **No analytics, telemetry, tracking or advertising.** The add-in sets no cookies.
-- **Nothing is logged or stored by the Worker's code.** It only forwards requests to TypeSafe and serves the add-in's files.
+- **Nothing is logged or stored by the Jev for Excel server's code.** It only forwards requests to TypeSafe and serves the add-in's files.
 - **Nothing is read from your workbook** except the cells you pass to a `JEV` formula.
 - **No account with me.** You don't sign up for anything, and I don't know who uses the add-in.
 
@@ -43,7 +62,7 @@ The add-in isn't aimed at children, and I don't knowingly handle children's data
 
 ## Changes
 
-If this policy changes, the new version will be published here with a new effective date. The repository's history shows every earlier version.
+If the way Jev for Excel handles your information changes, this policy will be updated at the same address with a new effective date.
 
 ## Contact
 
