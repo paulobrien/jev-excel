@@ -31,6 +31,7 @@ const TYPES = {
 
 const UPSTREAM = "https://api.typesafe.ai";
 const API_ROUTES = { "/v1/systemone": "POST", "/v1/models": "GET" };
+const API_UPSTREAM_PATHS = { "/v1/systemone": "/v1/systemone", "/v1/models": "/v1/models" };
 const PASS_HEADERS = ["content-type", "retry-after", "retry-after-ms", "x-typesafe-request-id"];
 const MAX_BODY_BYTES = 1_000_000;
 const UPSTREAM_TIMEOUT_MS = 30_000;
@@ -60,6 +61,8 @@ async function readBody(req) {
 
 async function proxy(req, res, pathname) {
   const method = API_ROUTES[pathname];
+  const upstreamPath = API_UPSTREAM_PATHS[pathname];
+  if (!method || !upstreamPath) throw new HttpError(404, "Not found");
   if (req.method !== method) throw new HttpError(405, `Use ${method}`);
   const auth = req.headers.authorization;
   if (!auth) throw new HttpError(401, "Missing API key: set your TypeSafe key in the Jev pane");
@@ -67,7 +70,7 @@ async function proxy(req, res, pathname) {
   const headers = { Accept: "application/json", Authorization: auth };
   if (method === "POST") headers["Content-Type"] = "application/json";
 
-  const upstream = await fetch(UPSTREAM + pathname, {
+  const upstream = await fetch(UPSTREAM + upstreamPath, {
     method,
     headers,
     body: method === "POST" ? await readBody(req) : undefined,
