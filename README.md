@@ -74,6 +74,8 @@ Office add-ins always put custom functions under a namespace, so the add-in's fu
 
 ## Function reference
 
+For a one-page summary, see the **cheat sheet**. It's [`src/cheatsheet.html`](src/cheatsheet.html) in the repo, and the add-in's server hosts it at `/cheatsheet.html`, for example `https://jev-excel.<your-subdomain>.workers.dev/cheatsheet.html`. The task pane links to it too. It's a single self-contained file, so you can also download it, open it in any browser or print it.
+
 ### JEV.ASK: the main function
 
 ```
@@ -644,6 +646,7 @@ jev-excel/
 │   ├── functions.js             Custom function bindings (JEV.ASK, CHOICE, SCORE, NOUL, STATE, MODELS)
 │   ├── functions.json           Custom function metadata (names, parameters, help text)
 │   ├── taskpane.html/.css/.js   Settings pane; shares a runtime with the functions
+│   ├── cheatsheet.html          One-page formula guide (self-contained; served at /cheatsheet.html)
 │   └── assets/                  icon.svg, and the icon PNGs rendered from it by `npm run icons`
 ├── vba/
 │   ├── modJev.bas               VBA edition (=JEV, =JEV_STATE, =JEV_MODELS and macros)
