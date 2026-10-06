@@ -47,4 +47,4 @@ This agreement is governed by the laws of England and Wales. If any part of it i
 
 ## 10. Contact
 
-See [Support](SUPPORT.md).
+Email [support@fivepercentstudios.com](mailto:support@fivepercentstudios.com), or see the [Support](SUPPORT.md) page.

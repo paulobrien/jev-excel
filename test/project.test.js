@@ -22,3 +22,13 @@ test("every function in functions.json is registered in functions.js, and vice v
     .sort();
   assert.deepEqual(associated, declared);
 });
+
+test("every function has a helpUrl that lands on a section of the cheat sheet", () => {
+  const cheatsheet = read("src/cheatsheet.html");
+  for (const fn of JSON.parse(read("src/functions.json")).functions) {
+    // localhost:3000 is rewritten to the Worker's own origin when it serves functions.json.
+    const match = /^https:\/\/localhost:3000\/cheatsheet\.html#([a-z]+)$/.exec(fn.helpUrl || "");
+    assert.ok(match, `${fn.id} needs a helpUrl pointing at the cheat sheet`);
+    assert.ok(cheatsheet.includes(`id="${match[1]}"`), `cheatsheet.html has no section with id="${match[1]}" for ${fn.id}`);
+  }
+});

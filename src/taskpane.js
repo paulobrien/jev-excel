@@ -23,6 +23,12 @@
     $("cache").checked = s.cache;
   }
 
+  // The welcome panel is the first-run experience: it explains what Jev does and that a
+  // TypeSafe account is needed, until the user has saved a key.
+  function renderWelcome() {
+    $("welcome").hidden = Boolean(window.JevAddin.client.settings.apiKey);
+  }
+
   function readForm() {
     return {
       apiKey: $("apiKey").value.trim(),
@@ -65,6 +71,7 @@
   function wire() {
     $("version").textContent = "v" + JevCore.VERSION;
     fillForm();
+    renderWelcome();
     renderStats();
     setInterval(renderStats, 1500);
 
@@ -78,6 +85,7 @@
 
     $("save").addEventListener("click", async () => {
       window.JevAddin.saveSettings(readForm());
+      renderWelcome();
       renderStats();
       setStatus("Saved. Recalculating…", "ok");
       try {

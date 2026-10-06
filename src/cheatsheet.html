@@ -96,6 +96,9 @@
       box-shadow: var(--shadow);
       min-width: 0;
     }
+    .card { scroll-margin-top: 16px; }
+    /* The card a help link points at, e.g. cheatsheet.html#choice from Excel's "Help on this function". */
+    .card:target { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
     .card p { margin: 0 0 10px; }
     .card p:last-child { margin-bottom: 0; }
 
@@ -200,11 +203,12 @@
   <section class="intro" aria-label="What Jev is">
     <p><strong>Jev</strong> is a "System One" AI model from TypeSafe AI. It doesn't write text. It makes a fast, calibrated <em>decision</em> about the text you give it: which of your options fits, where the text sits on a scale you define, or how likely a statement about it is to be true. Its answers are labels and numbers, which is exactly what a spreadsheet cell needs. You can filter, sort, chart and pivot them like any other data.</p>
     <p><strong>How it works:</strong> each formula sends a cell's text and your question to TypeSafe, using your own API key, and returns the answer to the cell. Fill a formula down a column of tickets, reviews or emails to classify every row. Questions about the same text go out together in one request. Answers are cached, so recalculating doesn't pay for them again.</p>
+    <p><strong>What it costs:</strong> Jev for Excel is free. You need a TypeSafe AI account and API key, and TypeSafe bills your account for Jev usage. See <a href="https://docs.typesafe.ai/">TypeSafe's documentation</a> for pricing.</p>
   </section>
 
   <h2>Three kinds of question</h2>
   <div class="grid">
-    <article class="card">
+    <article class="card" id="choice">
       <h3>Pick one option <span class="tag">choice</span></h3>
       <p class="lede">Which of these labels fits the text?</p>
       <button type="button" class="f">=JEV.CHOICE(A2, "billing", "technical", "sales", "other")</button>
@@ -212,7 +216,7 @@
       <p>Add descriptions to tell similar labels apart. Include an <code>other</code> option. You can give 2 to 255 options.</p>
     </article>
 
-    <article class="card">
+    <article class="card" id="score">
       <h3>Place on a scale <span class="tag">score</span></h3>
       <p class="lede">Where does the text sit, from level 0 upwards?</p>
       <button type="button" class="f">=JEV.SCORE(A2, "Calm", "Frustrated but civil", "Very angry")</button>
@@ -220,7 +224,7 @@
       <p>List 2 to 10 levels, lowest first. The result is probability-weighted, so it can fall between levels.</p>
     </article>
 
-    <article class="card">
+    <article class="card" id="noul">
       <h3>Yes or no <span class="tag">noul</span></h3>
       <p class="lede">How likely is this statement to be true?</p>
       <button type="button" class="f">=JEV.NOUL(A2, "The customer is asking for a refund")</button>
@@ -231,7 +235,7 @@
 
   <h2>JEV.ASK: every option through one function</h2>
   <div class="grid">
-    <article class="card">
+    <article class="card" id="ask">
       <h3>The mode string</h3>
       <p class="lede"><code>=JEV.ASK(mode, text, options…)</code>. The mode picks the question type and what to return.</p>
       <div class="anatomy" aria-label="Mode string: type, then optional output, then optional threshold">
@@ -297,7 +301,7 @@
 
   <h2>More than one field, and more</h2>
   <div class="grid">
-    <article class="card">
+    <article class="card" id="state">
       <h3>Several columns at once <span class="tag">JEV.STATE</span></h3>
       <p class="lede">Combine a header row and a data row into named fields.</p>
       <button type="button" class="f">=JEV.NOUL(JEV.STATE($A$1:$D$1, A2:D2), "`Review` describes a product defect")</button>
@@ -312,7 +316,7 @@
       <p>Send rows with low confidence to a person for review. Use <code>choice:probs</code> or <code>noul</code> to set your own cut-offs.</p>
     </article>
 
-    <article class="card">
+    <article class="card" id="models">
       <h3>Available models <span class="tag">JEV.MODELS</span></h3>
       <p class="lede">List the models your key can use.</p>
       <button type="button" class="f">=JEV.MODELS()</button>

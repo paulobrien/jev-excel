@@ -74,12 +74,13 @@ test("dev server: proxy refuses requests without a key or with the wrong method"
 const loadWorker = async () => (await import("../worker/index.mjs")).default;
 const workerRequest = (p, init = {}) => new Request("https://jev.example.workers.dev" + p, init);
 
-/** Stands in for Cloudflare's static-asset binding, serving the dev manifest. */
+/** Stands in for Cloudflare's static-asset binding, serving the dev manifest and functions.json. */
 const ENV = {
   ASSETS: {
     fetch: async (request) => {
       const { pathname } = new URL(request.url);
       if (pathname === "/manifest.xml") return new Response(fs.readFileSync(path.join(__dirname, "..", "manifest.xml")));
+      if (pathname === "/functions.json") return new Response(fs.readFileSync(path.join(ROOT, "functions.json")));
       return new Response("Not found", { status: 404 });
     },
   },
@@ -130,4 +131,15 @@ test("worker: serves the manifest with its own origin and leaves other paths to 
   assert.doesNotMatch(xml, /localhost:3000/);
   assert.ok(xml.includes('"https://jev.example.workers.dev/functions.json"'));
   assert.equal((await worker.fetch(workerRequest("/nope.js"), ENV)).status, 404);
+});
+
+test("worker: serves functions.json with help links on its own origin, readable cross-origin", async () => {
+  const worker = await loadWorker();
+  const res = await worker.fetch(workerRequest("/functions.json"), ENV);
+  const { functions } = await res.json();
+  assert.match(res.headers.get("Content-Type"), /json/);
+  assert.equal(res.headers.get("Access-Control-Allow-Origin"), "*", "Excel on the web reads it from another origin");
+  for (const fn of functions) {
+    assert.ok(fn.helpUrl.startsWith("https://jev.example.workers.dev/cheatsheet.html#"), `${fn.id}: ${fn.helpUrl}`);
+  }
 });

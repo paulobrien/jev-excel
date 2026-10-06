@@ -377,7 +377,7 @@ For real use, deploy the add-in to [Cloudflare Workers](https://workers.cloudfla
 
 - It serves the add-in's files.
 - It forwards Jev calls to TypeSafe.
-- It serves a `manifest.xml` that points at its own URL.
+- It serves a `manifest.xml` that points at its own URL, and a `functions.json` whose **Help on this function** links open the right section of its cheat sheet.
 
 It holds no keys and needs no secrets or settings. The code is [`worker/index.mjs`](worker/index.mjs), and it's configured in [`wrangler.toml`](wrangler.toml).
 
@@ -640,7 +640,7 @@ These are Jev's documented limits (check TypeSafe's docs for the latest):
 jev-excel/
 ├── manifest.xml                 Add-in manifest (localhost URLs; the Worker serves it rewritten to its own URL)
 ├── wrangler.toml                Cloudflare Worker configuration
-├── worker/index.mjs             Cloudflare Worker: serves dist/, proxies /v1/* to TypeSafe, rewrites the manifest
+├── worker/index.mjs             Cloudflare Worker: serves dist/, proxies /v1/* to TypeSafe, rewrites manifest.xml and functions.json to its own URL
 ├── src/                         The add-in itself (built into dist/ by `npm run build` for the Worker)
 │   ├── jev-core.js              Core logic: parsing, request building, batching, cache, retries (UMD, testable in Node)
 │   ├── functions.js             Custom function bindings (JEV.ASK, CHOICE, SCORE, NOUL, STATE, MODELS)
@@ -657,8 +657,8 @@ jev-excel/
 │   └── icons.js                 Renders src/assets/icon.svg to every PNG size
 ├── test/
 │   ├── jev-core.test.js         Core logic against a mock Jev API
-│   ├── proxies.test.js          Dev server and Worker: static files, proxying, manifest rewriting
-│   └── project.test.js          Version numbers agree; functions.json matches functions.js
+│   ├── proxies.test.js          Dev server and Worker: static files, proxying, URL rewriting
+│   └── project.test.js          Version numbers agree; functions.json matches functions.js; help links land on the cheat sheet
 └── .github/workflows/ci.yml     Runs the tests on Node 20 and 22
 ```
 
@@ -670,7 +670,7 @@ npm run icons       # re-render the icon PNGs after editing src/assets/icon.svg
 npm run validate    # Microsoft's manifest validator (needs internet)
 ```
 
-The add-in uses a **shared runtime**: `taskpane.html` loads `jev-core.js`, `functions.js` and `taskpane.js` into a single JavaScript context. That's why the settings pane and the formulas share one client, one cache and one set of statistics. `functions.json` is written by hand, so if you add a function, register it in both `functions.js` (`CustomFunctions.associate`) and `functions.json`. `npm test` fails if they disagree. The same goes for the version number, which lives in `package.json`, `jev-core.js`, `manifest.xml` and `modJev.bas`.
+The add-in uses a **shared runtime**: `taskpane.html` loads `jev-core.js`, `functions.js` and `taskpane.js` into a single JavaScript context. That's why the settings pane and the formulas share one client, one cache and one set of statistics. `functions.json` is written by hand, so if you add a function, register it in both `functions.js` (`CustomFunctions.associate`) and `functions.json`. Give it a `helpUrl` pointing at a matching section of `cheatsheet.html`, which Marketplace review requires. `npm test` fails if any of these are missing or disagree. The same goes for the version number, which lives in `package.json`, `jev-core.js`, `manifest.xml` and `modJev.bas`.
 
 **API reference used:** `POST /v1/systemone` with `{ model, state, questions }`. The question types are `noul` (optional `criteria.true`/`criteria.false`), `choice` (`criteria` maps each label to a description or `null`) and `score` (`criteria` is an array of 2–10 levels). Answers come back keyed by question id. `GET /v1/models` returns `{ models: [{ name, description, release_date }] }`. See the [TypeSafe API reference](https://docs.typesafe.ai/api) and the official [`@typesafe-ai/sdk`](https://www.npmjs.com/package/@typesafe-ai/sdk).
 

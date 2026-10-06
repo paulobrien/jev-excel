@@ -5,8 +5,8 @@
  *  - Static assets (the built ./dist folder) are served by Cloudflare directly.
  *  - /v1/systemone and /v1/models are proxied to TypeSafe. api.typesafe.ai rejects
  *    browser (CORS) requests, so the add-in calls its own origin instead.
- *  - /manifest.xml is the development manifest with every https://localhost:3000
- *    URL replaced by this Worker's origin, so it's right on any domain.
+ *  - /manifest.xml and /functions.json are served with every https://localhost:3000
+ *    URL replaced by this Worker's origin, so their links are right on any domain.
  *
  * The proxy holds no key. Each caller's own "Authorization: Bearer <TypeSafe key>"
  * header is passed through unchanged, so usage is billed to the caller's account.
@@ -17,6 +17,11 @@ const API_ROUTES = { "/v1/systemone": "POST", "/v1/models": "GET" };
 const PASS_HEADERS = ["Content-Type", "Retry-After", "retry-after-ms", "x-typesafe-request-id"];
 const MAX_BODY_BYTES = 1_000_000;
 const DEV_ORIGIN = "https://localhost:3000";
+// Files whose development URLs are rewritten to this Worker's origin, with their content types.
+const REWRITTEN = {
+  "/manifest.xml": "application/xml; charset=utf-8",
+  "/functions.json": "application/json; charset=utf-8",
+};
 
 function json(status, message) {
   return new Response(JSON.stringify({ error: { message } }), {
@@ -60,12 +65,20 @@ async function proxy(request, method, pathname) {
   return new Response(upstream.body, { status: upstream.status, headers });
 }
 
-async function manifest(request, env) {
+async function rewrite(request, env, contentType) {
   const template = await env.ASSETS.fetch(request);
   if (!template.ok) return template;
   const { origin } = new URL(request.url);
-  const xml = (await template.text()).split(DEV_ORIGIN).join(origin);
-  return new Response(xml, { headers: { "Content-Type": "application/xml; charset=utf-8", "Cache-Control": "no-cache" } });
+  const body = (await template.text()).split(DEV_ORIGIN).join(origin);
+  return new Response(body, {
+    headers: {
+      "Content-Type": contentType,
+      "Cache-Control": "no-cache",
+      // Excel on the web fetches functions.json from another origin. _headers doesn't
+      // apply to responses built here, so this has to be set explicitly.
+      "Access-Control-Allow-Origin": "*",
+    },
+  });
 }
 
 export default {
@@ -73,7 +86,7 @@ export default {
     const { pathname } = new URL(request.url);
     const method = API_ROUTES[pathname];
     if (method) return proxy(request, method, pathname);
-    if (pathname === "/manifest.xml") return manifest(request, env);
+    if (REWRITTEN[pathname]) return rewrite(request, env, REWRITTEN[pathname]);
     return env.ASSETS.fetch(request);
   },
 };

@@ -44,6 +44,15 @@ main { padding: 4px 16px 8px; }
 section { padding: 14px 0; border-bottom: 1px solid var(--line); }
 section:last-child { border-bottom: 0; }
 label { display: block; font-weight: 600; margin: 10px 0 4px; }
+.welcome p { margin: 0 0 10px; }
+.welcome-title { font-size: 15px; font-weight: 600; line-height: 1.35; }
+.examples { list-style: none; margin: 0 0 10px; padding: 0; }
+.examples li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; margin-bottom: 6px; }
+.examples code { padding: 2px 5px; overflow-wrap: anywhere; }
+.examples span { color: var(--muted); font-size: 12px; }
+.examples span::before { content: "→ "; }
+.notice { border-left: 3px solid var(--accent); padding: 6px 10px; background: var(--code); border-radius: 0 4px 4px 0; }
+a { color: var(--accent); }
 label.check { font-weight: 400; display: flex; gap: 6px; align-items: flex-start; }
 input[type="text"], input[type="password"], input[type="url"] {
   width: 100%;

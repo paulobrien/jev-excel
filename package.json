@@ -1,6 +1,6 @@
 {
   "name": "jev-excel",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Excel add-in that lets you call TypeSafe AI's Jev model from formulas: =JEV.ASK(\"choice\", A2, \"option1\", \"option2\").",
   "private": true,
   "license": "MIT",

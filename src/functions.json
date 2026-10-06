@@ -3,6 +3,7 @@
     {
       "id": "ASK",
       "name": "ASK",
+      "helpUrl": "https://localhost:3000/cheatsheet.html#ask",
       "description": "Ask Jev a typed question about some text. Mode is \"choice\", \"score\" or \"noul\", optionally with an output such as \"choice:probs\" or \"noul:bool\".",
       "result": { "dimensionality": "matrix" },
       "parameters": [
@@ -31,6 +32,7 @@
     {
       "id": "CHOICE",
       "name": "CHOICE",
+      "helpUrl": "https://localhost:3000/cheatsheet.html#choice",
       "description": "Jev picks one of the options for the text and returns its label.",
       "result": { "dimensionality": "matrix" },
       "parameters": [
@@ -52,6 +54,7 @@
     {
       "id": "SCORE",
       "name": "SCORE",
+      "helpUrl": "https://localhost:3000/cheatsheet.html#score",
       "description": "Jev places the text on an ordered rubric and returns the expected level (can fall between levels).",
       "result": { "dimensionality": "matrix" },
       "parameters": [
@@ -73,6 +76,7 @@
     {
       "id": "NOUL",
       "name": "NOUL",
+      "helpUrl": "https://localhost:3000/cheatsheet.html#noul",
       "description": "Jev answers a yes/no question about the text and returns the probability of yes (0 to 1).",
       "result": { "dimensionality": "matrix" },
       "parameters": [
@@ -107,6 +111,7 @@
     {
       "id": "STATE",
       "name": "STATE",
+      "helpUrl": "https://localhost:3000/cheatsheet.html#state",
       "description": "Builds a JSON object from a header range and a value range, so Jev sees named fields you can reference in questions with `backticks`.",
       "result": { "type": "string" },
       "parameters": [
@@ -127,6 +132,7 @@
     {
       "id": "MODELS",
       "name": "MODELS",
+      "helpUrl": "https://localhost:3000/cheatsheet.html#models",
       "description": "Lists the Jev models available to your API key (spills name, description, release date).",
       "result": { "dimensionality": "matrix" },
       "parameters": []

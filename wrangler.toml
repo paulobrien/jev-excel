@@ -1,5 +1,5 @@
 # Cloudflare Worker that hosts the add-in: static files from ./dist, plus the
-# /v1/* proxy to TypeSafe and a /manifest.xml with this Worker's own URLs.
+# /v1/* proxy to TypeSafe, and manifest.xml and functions.json rewritten to this Worker's own URLs.
 # Deploy with `npm run deploy`, which builds ./dist first.
 name = "jev-excel"
 main = "worker/index.mjs"
@@ -10,5 +10,5 @@ directory = "./dist"
 binding = "ASSETS"
 # Serve /taskpane.html as-is instead of redirecting to /taskpane.
 html_handling = "none"
-# The Worker rewrites the manifest, so it must see that request before the static file is served.
-run_worker_first = ["/manifest.xml", "/v1/*"]
+# The Worker rewrites these files' URLs, so it must see those requests before the static files are served.
+run_worker_first = ["/manifest.xml", "/functions.json", "/v1/*"]

@@ -15,7 +15,7 @@
 })(typeof self !== "undefined" ? self : this, function () {
   "use strict";
 
-  const VERSION = "1.0.0";
+  const VERSION = "1.0.1";
 
   const DEFAULTS = Object.freeze({
     apiKey: "",

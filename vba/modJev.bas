@@ -31,7 +31,7 @@ Option Explicit
     Private Declare Sub Sleep Lib "kernel32" (ByVal dwMilliseconds As Long)
 #End If
 
-Private Const JEV_VERSION As String = "1.0.0"
+Private Const JEV_VERSION As String = "1.0.1"
 Private Const DEFAULT_BASE_URL As String = "https://api.typesafe.ai"
 Private Const DEFAULT_MODEL As String = "jev-latest"
 Private Const REG_APP As String = "JevForExcel"

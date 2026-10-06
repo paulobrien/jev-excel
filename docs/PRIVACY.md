@@ -66,4 +66,4 @@ If the way Jev for Excel handles your information changes, this policy will be u
 
 ## Contact
 
-For questions about this policy, see [Support](SUPPORT.md).
+For questions about this policy, email [support@fivepercentstudios.com](mailto:support@fivepercentstudios.com). Other ways to get help are on the [Support](SUPPORT.md) page.

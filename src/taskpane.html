@@ -17,6 +17,18 @@
   </header>
 
   <main>
+    <!-- First-run welcome: shown until an API key has been saved (see taskpane.js). -->
+    <section id="welcome" class="welcome" hidden>
+      <p class="welcome-title">Classify, score and check text with AI, right in your formulas</p>
+      <p>Jev reads the text in your cells and returns an answer you can sort, filter and chart: which category fits, where the text sits on a scale, or how likely a statement is to be true. Fill a formula down a column to process every row.</p>
+      <ul class="examples">
+        <li><code>=JEV.CHOICE(A2, "billing", "technical", "other")</code><span>technical</span></li>
+        <li><code>=JEV.SCORE(A2, "Calm", "Annoyed", "Angry")</code><span>1.43</span></li>
+        <li><code>=JEV.NOUL(A2, "Asks for a refund")</code><span>0.93</span></li>
+      </ul>
+      <p class="notice"><strong>You'll need a TypeSafe AI account.</strong> Jev for Excel is free, and TypeSafe bills your account for Jev usage. <a href="https://docs.typesafe.ai/" target="_blank" rel="noopener">Get an API key</a>, then paste it below.</p>
+    </section>
+
     <section>
       <h2>Connection</h2>
       <label for="apiKey">API key</label>
@@ -24,7 +36,7 @@
         <input id="apiKey" type="password" autocomplete="off" spellcheck="false" placeholder="Paste your TypeSafe API key" />
         <button id="toggleKey" type="button" class="ghost" aria-label="Show key">Show</button>
       </div>
-      <p class="hint">Your own TypeSafe key. It's stored only in this add-in's browser storage on this device. The server passes it on to TypeSafe without keeping it.</p>
+      <p class="hint">Your own TypeSafe key. TypeSafe bills your account for Jev usage. The key is stored only in this add-in's browser storage on this device, and the server passes it on to TypeSafe without keeping it.</p>
 
       <label for="model">Model</label>
       <input id="model" type="text" spellcheck="false" placeholder="jev-latest" />

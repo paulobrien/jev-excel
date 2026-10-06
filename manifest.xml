@@ -10,7 +10,7 @@
            xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
            xsi:type="TaskPaneApp">
   <Id>f0ac3d35-049f-4033-afcb-63c61b6cd376</Id>
-  <Version>1.0.0.0</Version>
+  <Version>1.0.1.0</Version>
   <ProviderName>Paul O'Brien</ProviderName>
   <DefaultLocale>en-GB</DefaultLocale>
   <DisplayName DefaultValue="Jev for Excel"/>
@@ -98,16 +98,16 @@
         <bt:Url id="Functions.Script.Url" DefaultValue="https://localhost:3000/functions.js"/>
         <bt:Url id="Functions.Metadata.Url" DefaultValue="https://localhost:3000/functions.json"/>
         <bt:Url id="Taskpane.Url" DefaultValue="https://localhost:3000/taskpane.html"/>
-        <bt:Url id="GetStarted.LearnMoreUrl" DefaultValue="https://github.com/paulobrien/jev-excel#readme"/>
+        <bt:Url id="GetStarted.LearnMoreUrl" DefaultValue="https://localhost:3000/cheatsheet.html"/>
       </bt:Urls>
       <bt:ShortStrings>
         <bt:String id="Functions.Namespace" DefaultValue="JEV"/>
-        <bt:String id="GetStarted.Title" DefaultValue="Jev for Excel is ready"/>
+        <bt:String id="GetStarted.Title" DefaultValue="Classify text with AI, right in your formulas"/>
         <bt:String id="Group.Label" DefaultValue="Jev"/>
         <bt:String id="TaskpaneButton.Label" DefaultValue="Jev"/>
       </bt:ShortStrings>
       <bt:LongStrings>
-        <bt:String id="GetStarted.Description" DefaultValue="Open Home > Jev to add your API key, then try =JEV.ASK(&quot;choice&quot;, A2, &quot;billing&quot;, &quot;technical&quot;, &quot;other&quot;)."/>
+        <bt:String id="GetStarted.Description" DefaultValue="Sort text into categories, score it on a scale or check a statement with one formula. Open Home &gt; Jev, paste your TypeSafe API key, then try =JEV.CHOICE(A2, &quot;billing&quot;, &quot;technical&quot;, &quot;other&quot;)."/>
         <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Set your Jev API key and model, test the connection and manage the answer cache."/>
       </bt:LongStrings>
     </Resources>
