@@ -1,8 +1,12 @@
-# Support
+# Jev for Excel support
+
+> ## 📧 Email: [support@fivepercentstudios.com](mailto:support@fivepercentstudios.com)
+>
+> For any question or problem with Jev for Excel, email us at **support@fivepercentstudios.com**.
 
 Jev for Excel is an unofficial Excel add-in, maintained by Paul O'Brien at Five Percent Studios.
 
-## Contact us
+## Other ways to get help
 
 | Channel | Use it for |
 |---|---|
